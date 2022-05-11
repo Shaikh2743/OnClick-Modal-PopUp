@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+*, *:after, *:before {
+	box-sizing: border-box;
+}
+@media (min-width:60px) and (max-width:1024px) {
+    
+}
+:root {
+	font-size: 16px;
+}
+
+body {
+	font-family: "Inter", sans-serif;
+	line-height: 2;
+	min-height: 100%;
+	font-size: 1.25rem;
+    background-color: #415C30;
+}
+ul {
+    color: white;
+}
+*:focus {
+	outline: none;
+}
+
+body > div {
+	width: 90%;
+	max-width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5rem;
+	margin-bottom: 5rem;
+}
+
+details div {
+	padding: 0;
+}
+
+details div > * + * {
+	margin-top: 1.5em;
+}
+
+details + details {
+	margin-top: .5rem;
+}
+
+summary {
+	list-style: none;
+    color: white;
+}
+
+summary::-webkit-details-marker {
+	display: none;
+}
+
+summary {
+    padding: 0;
+    background-color: transparent;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    border-bottom: 2px solid white;
+    font-weight: 800;
+    font-size: 1.3rem;
+}
+
+summary::before {
+	position: absolute;
+	top: 50%;
+	left: .75rem;
+	width: 1.75rem;
+	height: 1.75rem;
+	background-color: transparent;
+	color: #FFF;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	flex-shrink: 0;
+    font-size: 2.5rem;
+}
+summary::after {
+    transform: translateY(20%);
+    left: 0.75rem;
+    content: "\276F";
+    background-color: transparent;
+    color: #FFF;
+    margin-left: 8rem;
+    font-size: 1.5rem;
+}
+
+details[open] summary {
+	background-color: transparent;
+}
+li {
+    list-style: none;
+    text-align: center;
+    font-size: 1rem;
+}
+
+details[open] summary::after {
+	content: "\02C4";
+    font-size: 2.5rem;
+}
+
+summary:hover {
+	background-color: transparent;
+}
+
+a {
+	color: inherit;
+	font-weight: 600;
+	text-decoration: none;
+	box-shadow: 0 1px 0 0;
+}
+
+a:hover {
+	box-shadow: 0 3px 0 0;
+}
+
+code {
+	font-family: monospace;
+	font-weight: 600;
+}
+.anchor_tag{
+    text-align: center;
+    color: white;
+    padding: 3rem 0;
+}

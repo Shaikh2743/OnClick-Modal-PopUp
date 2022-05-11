@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <link rel="stylesheet" href="Accordion1.css">
+    <link rel="stylesheet" href="Accordion1.js"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Hind:300,400&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Hind', sans-serif;
+            background: #fff;
+            color: white;
+            min-height: 100vh;
+            line-height: 2;
+            min-height: 100%;
+            font-size: 1.25rem;
+
+        }
+
+        .container {
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .accordion .accordion-item {
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .accordion .accordion-item button[aria-expanded='true'] {
+            border-bottom: 1px solid white;
+        }
+
+        .accordion button {
+            position: relative;
+            display: block;
+            width: 100%;
+            padding: 1em 0;
+            color: white;
+            text-align: center;
+            font-size: 1.15rem;
+            font-weight: 400;
+            border: none;
+            background: none;
+            outline: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion button:hover,
+        .accordion button:focus {
+            cursor: pointer;
+            color: white;
+        }
+
+        .accordion button:hover::after,
+        .accordion button:focus::after {
+            cursor: pointer;
+            color: white;
+            border: 1px solid white;
+        }
+
+        .accordion button .accordion-title {
+            padding: 1em 1.5em 1em 0;
+            width: 90%;
+            font-weight: 900;
+        }
+
+        .accordion button .icon {
+            display: inline-block;
+            position: absolute;
+            top: 18px;
+            right: 0;
+            width: 22px;
+            height: 22px;
+            border: 1px solid;
+            border-radius: 22px;
+        }
+
+        .accordion button .icon::before {
+            display: block;
+            position: absolute;
+            content: '';
+            top: 9px;
+            left: 5px;
+            width: 10px;
+            height: 2px;
+            background: currentColor;
+        }
+
+        .accordion button .icon::after {
+            display: block;
+            position: absolute;
+            content: '';
+            top: 5px;
+            left: 9px;
+            width: 2px;
+            height: 10px;
+            background: currentColor;
+        }
+
+        .accordion button[aria-expanded='true'] {
+            color: white;
+        }
+
+        .accordion button[aria-expanded='true'] .icon::after {
+            width: 0;
+        }
+
+        .accordion button[aria-expanded='true']+.accordion-content {
+            opacity: 1;
+            max-height: 30em;
+            transition: all 200ms linear;
+            will-change: opacity, max-height;
+            text-align: center;
+        }
+
+        .accordion .accordion-content {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: opacity 200ms linear, max-height 200ms linear;
+            will-change: opacity, max-height;
+        }
+
+        .accordion .accordion-content p {
+            font-size: 1rem;
+            font-weight: 300;
+            margin: 2em 0;
+        }
+
+        ul {
+            text-align: center;
+            color: white;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .subscribe {
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .MySvg {
+            height: 1rem;
+        }
+
+        .Mobile-Footer {
+            background-color: #415C30;
+            width: 100%;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 15rem;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .MyPopUpForm {
+            text-align: center;
+        }
+
+        .MyPopUpInput {
+            outline: none;
+            width: 100%;
+        }
+
+        .subscribe {
+            cursor: pointer;
+        }
+
+        .NewsLetterText {
+            font-size: 0.8rem;
+            color: black;
+        }
+
+        .SubmitNews {
+            background: #415C30;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 6px;
+            width: 5rem;
+            height: 2rem;
+            margin-top: 2rem;
+        }
+
+        p:last-of-type {
+            margin-bottom: 0;
+            font-size: 1.2rem;
+        }
+
+        @media (min-width:1024px) {
+            .Mobile-Footer {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="Mobile-Footer">
+        <div class="container">
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button id="accordion-button-1" aria-expanded="false"><span class="accordion-title">Support</span>
+                        <!-- <span class="icon" aria-hidden="true"></span> -->
+                        <span>
+                            <svg class="MySvg" width="51" height="30" viewBox="0 0 51 30" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M22.8485 28.1162C24.1802 29.4479 26.3393 29.4479 27.671 28.1162L49.3721 6.41513C50.7038 5.08344 50.7038 2.92435 49.3721 1.59266C48.0404 0.260973 45.8813 0.260973 44.5496 1.59266L25.2598 20.8825L5.96989 1.59266C4.63821 0.260973 2.47911 0.260973 1.14743 1.59266C-0.184261 2.92435 -0.184261 5.08344 1.14743 6.41513L22.8485 28.1162ZM21.8498 24V25.705H28.6698V24H21.8498Z"
+                                    fill="white" />
+                            </svg></span>
+                    </button>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Contact Us</li>
+                            <li>Shipping And Delivery</li>
+                            <li>Cancellations And Returns</li>
+                            <li>Privacy Policy</li>
+                            <li>Terms and Condition</li>
+                            <li>Brands</li>
+                            <li>Recieps</li>
+                            <li>About Us</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button id="accordion-button-2" aria-expanded="false"><span class="accordion-title">Quick Links
+                        </span>
+                        <!-- <span class="icon" aria-hidden="true"></span> -->
+                        <span class="accordion-arrow">
+                            <svg class="MySvg" width="51" height="30" viewBox="0 0 51 30" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M22.8485 28.1162C24.1802 29.4479 26.3393 29.4479 27.671 28.1162L49.3721 6.41513C50.7038 5.08344 50.7038 2.92435 49.3721 1.59266C48.0404 0.260973 45.8813 0.260973 44.5496 1.59266L25.2598 20.8825L5.96989 1.59266C4.63821 0.260973 2.47911 0.260973 1.14743 1.59266C-0.184261 2.92435 -0.184261 5.08344 1.14743 6.41513L22.8485 28.1162ZM21.8498 24V25.705H28.6698V24H21.8498Z"
+                                    fill="white" />
+                            </svg></span>
+                    </button>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Snacks</li>
+                            <li>Sauces, Spreads & Dips</li>
+                            <li>Oils, Vinegar & Ghee</li>
+                            <li>Spices & Seasonings</li>
+                            <li>Natural Sweetners</li>
+                            <li>Instant Baking</li>
+                            <li>Pasta & Noodles</li>
+                            <li>Juices</li>
+                            <li>Organic</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button id="accordion-button-3" aria-expanded="false"><span class="accordion-title">Subscribe
+                        </span>
+                        <!-- <span class="icon" aria-hidden="true"></span> -->
+                        <span> <svg class="MySvg" width="51" height="30" viewBox="0 0 51 30" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M22.8485 28.1162C24.1802 29.4479 26.3393 29.4479 27.671 28.1162L49.3721 6.41513C50.7038 5.08344 50.7038 2.92435 49.3721 1.59266C48.0404 0.260973 45.8813 0.260973 44.5496 1.59266L25.2598 20.8825L5.96989 1.59266C4.63821 0.260973 2.47911 0.260973 1.14743 1.59266C-0.184261 2.92435 -0.184261 5.08344 1.14743 6.41513L22.8485 28.1162ZM21.8498 24V25.705H28.6698V24H21.8498Z"
+                                    fill="white" />
+                            </svg></span>
+                    </button>
+                    <div class="accordion-content">
+                        <span class="subscribe" id="MySubscribe">Subscribe to our newsletter</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="MySubscribeModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div>
+                    <form class="MyPopUpForm">
+                        <p class="NewsLetterText">Fill Form To Subscribe Our NewsLetter</p>
+                        <span class="MyPopUpInput"><input class="MyPopUpInput" type="text"
+                                placeholder="First Name"></span></br>
+                        <span class="MyPopUpInput"><input class="MyPopUpInput" type="text"
+                                placeholder="Last Name"></span></br>
+                        <div class="Field Field_type_text ">
+                            <input data-skip-value="false" type="email" id="form-1652187388251" placeholder="Email"
+                                autocomplete="off" value="">
+                        </div>
+                        <button type="submit" class="SubmitNews">Submit </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <script>
+        const items = document.querySelectorAll(".accordion button");
+
+        function toggleAccordion() {
+            const itemToggle = this.getAttribute('aria-expanded');
+
+            for (i = 0; i < items.length; i++) {
+                items[i].setAttribute('aria-expanded', 'false');
+            }
+
+            if (itemToggle == 'false') {
+                this.setAttribute('aria-expanded', 'true');
+            }
+        }
+
+        items.forEach(item => item.addEventListener('click', toggleAccordion));
+        var modal = document.getElementById("MySubscribeModal");
+        var btn = document.getElementById("MySubscribe");
+        var span = document.getElementsByClassName("close")[0];
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
